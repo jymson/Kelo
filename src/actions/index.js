@@ -1,7 +1,8 @@
 import Firebase from 'firebase';
 import _ from 'lodash';
 
-export const FETCH_KETO_LOCATIONS = 'FETCH_WEATHER';
+export const FETCH_KETO_LOCATIONS = 'FETCH_KETO_LOCATIONS';
+export const CREATE_KETO_LOCATION = 'CREATE_KETO_LOCATION';
 
 // const Posts = new Firebase('https://kelo-db.firebaseio.com');
 
@@ -15,5 +16,14 @@ export function fetchKetoLocations() {
   return {
     type: FETCH_KETO_LOCATIONS,
     payload: Posts
+  }
+}
+
+export function createKetoLocation(ketoLocation) {
+  console.log(ketoLocation);
+  
+  return {
+    type: CREATE_KETO_LOCATION,
+    payload:ketoLocation
   }
 }

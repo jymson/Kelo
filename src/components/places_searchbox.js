@@ -6,12 +6,12 @@ class PlacesSearchBox extends Component {
     super(props);
     this.state = { 
       address: 'San Francisco, CA',
-      
     }
   }
   
-  onSuggestselect(suggest) {
+  onSuggestSelect(suggest) {
     console.log(suggest);
+    this.props.selectedSuggestion(suggest);
   }
   
   onSuggestNoResults(userInput) {
