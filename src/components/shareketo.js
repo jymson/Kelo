@@ -25,7 +25,6 @@ class Shareketo extends Component {
   }
   
   onSuggestNoResults(suggest) {
-    
     console.log(suggest);
   }
   
@@ -46,24 +45,6 @@ class Shareketo extends Component {
   }
   
   renderField(field) {
-    const { meta: { touched, error } } = field;
-    const className= `form-group ${touched && error ? 'has-danger' : ''}`
-    
-    return (
-      <div className={className}>
-        <input
-          placeholder={field.label}
-          type="text"
-          {...field.input}
-        />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    )
-  }
-  
-  renderRenderTextArea(field) {
     const { meta: { touched, error } } = field;
     const className= `form-group ${touched && error ? 'has-danger' : ''}`
     
