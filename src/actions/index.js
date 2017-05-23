@@ -1,16 +1,9 @@
-import Firebase from 'firebase';
+import firebase, { firebaseRef } from '../firebase';
 import _ from 'lodash';
 
 export const FETCH_KETO_LOCATIONS = 'FETCH_KETO_LOCATIONS';
 export const CREATE_KETO_LOCATION = 'CREATE_KETO_LOCATION';
 
-// const Posts = new Firebase('https://kelo-db.firebaseio.com');
-
-const Posts = [
-  {id: 1, restaurant: 'McDonalds', address: 'San Francisco', location: {lon: 423, lat: 122}},
-  {id: 2, restaurant: 'Wendys', address: 'San Francisco', location: {lon: 423, lat: 122}},
-  {id: 3, restaurant: 'Chipotle', address: 'San Francisco', location: {lon: 423, lat: 122}},
-]
 
 export function fetchKetoLocations() {
   return {
@@ -19,11 +12,21 @@ export function fetchKetoLocations() {
   }
 }
 
-export function createKetoLocation(ketoLocation) {
-  console.log(ketoLocation);
+export function fetchKetoLocation(ketoPost) {
+  console.log(ketoPost);
   
-  return {
-    type: CREATE_KETO_LOCATION,
-    payload:ketoLocation
+  return dispatch => {
+    Locations.on('value', snapshot => {
+      dispatch({
+        type: FETCH_KETO_LOCATIONS,
+        payload: snapshot.val()
+      })
+    })
+  }
+}
+
+export function createKetoLocation(ketoPost) {
+  return dispatch => {
+    var ketoPostRef = firebaseRef.child('ketolocations').push(ketoPost);
   }
 }

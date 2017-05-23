@@ -39,6 +39,10 @@ class Shareketo extends Component {
     }
     console.log(this.state.selectedSuggestion)
     console.log(ketoPost);
+    
+    this.props.createKetoLocation(ketoPost, () => {
+      this.props.history.push('/');
+    })
   }
   
   renderField(field) {
