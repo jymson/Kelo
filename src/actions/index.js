@@ -6,9 +6,15 @@ export const CREATE_KETO_LOCATION = 'CREATE_KETO_LOCATION';
 
 
 export function fetchKetoLocations() {
-  return {
-    type: FETCH_KETO_LOCATIONS,
-    payload: Posts
+  return dispatch => {
+    var ketoPostRef = firebaseRef.child('ketolocations')
+    ketoPostRef.on('value', snapshot => {
+      console.log(snapshot.val())
+      dispatch({
+        type: FETCH_KETO_LOCATIONS,
+        payload: snapshot.val()
+      })
+    })
   }
 }
 
@@ -25,8 +31,10 @@ export function fetchKetoLocation(ketoPost) {
   }
 }
 
-export function createKetoLocation(ketoPost) {
+export function createKetoLocation(ketoPost, callback) {
   return dispatch => {
-    var ketoPostRef = firebaseRef.child('ketolocations').push(ketoPost);
+    var ketoPostRef = firebaseRef.child('ketolocations').push(ketoPost).then(() => {
+      callback();
+    });
   }
 }

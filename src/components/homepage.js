@@ -14,8 +14,8 @@ class Homepage extends Component {
     console.log(this.props.ketoLocations)
     return _.map(this.props.ketoLocations, ketoLoc => {
       return (
-        <li classNam="list-group-item" key={ketoLoc.id}>
-          {ketoLoc.restaurant}
+        <li classNam="list-group-item" key={ketoLoc.placeId}>
+          {ketoLoc.place}
         </li>
       )
     })
