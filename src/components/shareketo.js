@@ -21,6 +21,7 @@ class Shareketo extends Component {
   }
   
   onSuggestSelect(suggest) {
+    console.log(suggest);
     this.setState({selectedSuggestion:suggest});
   }
   

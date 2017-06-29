@@ -13,26 +13,44 @@ class Homepage extends Component {
   renderKetoSpots() {
     console.log(this.props.ketoLocations)
     return _.map(this.props.ketoLocations, ketoLoc => {
+      const smallStyle = {
+        fontSize: '10px'
+      }
+      
       return (
-        <li classNam="list-group-item" key={ketoLoc.placeId}>
-          {ketoLoc.place}
-        </li>
+        <div class="panel panel-default">
+          <div className="media panel-body" key={ketoLoc.placeId}>
+            <div className="media-left">
+              <a href="#">
+                <img className="media-object" src="..." alt="..."/>
+              </a>
+            </div>
+            <div className="media-body">
+              <h4 className="media-heading">{ketoLoc.name} <small style={smallStyle}>insert distance of location </small></h4>
+              <p>
+                {ketoLoc.place.split(",")[0]} |  
+                <small>{ketoLoc.address}</small>
+              </p>
+              <p>{ketoLoc.notes}</p>
+            </div>
+          </div>
+        </div>
       )
     })
   }
   
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="text-xs-right">
-          <Link className="btn btn-primary" to="/shareketo">
+          <Link className="btn btn-default" to="/shareketo">
             Share your keto find
           </Link>
         </div>
         <h1>Homepage</h1>
-        <ul>
+        <div className="well">
           {this.renderKetoSpots()}
-        </ul>
+        </div>
       </div>
     )
   }
