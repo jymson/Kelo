@@ -5,16 +5,22 @@ import { Link } from 'react-router-dom';
 
 import { fetchKetoLocations } from '../actions';
 
+import Leaflet from 'leaflet'
+import LeafletMap from './leaflet_map';
+
+Leaflet.Icon.Default.imagePath =
+  '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/images/'
+
 class Homepage extends Component {
   componentDidMount() {
     this.props.fetchKetoLocations();
   }
   
   renderKetoSpots() {
-    console.log(this.props.ketoLocations)
-    return _.map(this.props.ketoLocations, ketoLoc => {
-      const smallStyle = {
-        fontSize: '10px'
+      console.log(this.props.ketoLocations)
+      return _.map(this.props.ketoLocations, ketoLoc => {
+        const smallStyle = {
+          fontSize: '10px'
       }
       
       return (
@@ -48,6 +54,9 @@ class Homepage extends Component {
           </Link>
         </div>
         <h1>Homepage</h1>
+        <hr/>
+        <LeafletMap/>
+        <hr/>
         <div className="well">
           {this.renderKetoSpots()}
         </div>
